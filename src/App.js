@@ -23,44 +23,40 @@ class App extends Component {
 
 
   handleCreate = (data) => {
-    // console.log(data);
-    const {information} = this.state;
+    const { information } = this.state;
     this.setState({
-      information: information.concat({id: this.id++, ...data })
+      information: information.concat({ id: this.id++, ...data })
     })
   }
-
   handleRemove = (id) => {
-    const {information} = this.state;
+    const { information } = this.state;
     this.setState({
       information: information.filter(info => info.id !== id)
     })
   }
-
   handleUpdate = (id, data) => {
-    const {information} = this.state;
+    const { information } = this.state;
     this.setState({
       information: information.map(
-        info => id === info.id 
-        ? {...info, ...data }
-        : info
-      )       
+        info => id === info.id
+          ? { ...info, ...data } 
+          : info //maintaint the existing values
+      )
     })
-}
+  }
 
   render() {
-    const {information} = this.state;
+    const { information } = this.state;
     return (
       <div>
-        <PhoneForm 
-          onCreate = {this.handleCreate}
+        <PhoneForm
+          onCreate={this.handleCreate}
         />
-
-        {JSON.stringify(information)}
-        <PhoneInfoList  
-          data = {information}
-          onRemove = {this.handleRemove}
-          onUpdate = {this.handleUpdate} />
+        <PhoneInfoList 
+          data={information}
+          onRemove={this.handleRemove}
+          onUpdate={this.handleUpdate}
+        />
       </div>
     );
   }

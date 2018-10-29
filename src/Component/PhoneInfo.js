@@ -26,8 +26,7 @@ class PhoneInfo extends Component{
     handleToggleEdit = () => {
         const {editing} = this.state;
         this.setState({
-            editing: !editing
-        })
+            editing: !editing })
     }
 
     //event for input changed
@@ -48,7 +47,7 @@ class PhoneInfo extends Component{
             })
         }
 
-        if(prevProps.editing && !this.state.editing){
+        if(prevState.editing && !this.state.editing){
             onUpdate(info.id, {
                 name: this.state.name,
                 phone: this.state.phone
